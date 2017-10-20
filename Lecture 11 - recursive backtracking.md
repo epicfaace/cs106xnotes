@@ -64,3 +64,36 @@ void diceSum(int dice, int desiredSum) {
 ## Exercise: sublists.
 Find every possible sub-list of a given vector (basically, all possible subsets).
 
+10/20/2017
+
+# The "8 Queens" problem
+Can you place 8 queens on the board such that no queen can attack another queen?
+~~~~
+
+~~~~
+
+# "travel" problem
+~~~~c++
+void travelHelper(const GPoint& target, GPoint me, Vector<string>& chosen) {
+    if (target == me) {
+        // done
+        cout << chosen << endl;
+    } else if (me.getX() <= target.getX() &&
+                me.getY() <= target.getY()) {
+        // recursive case: take a step towards target
+        GPoint e(me.getX() + 1, me.getY());
+        GPoint n(me.getX() + 1, me.getY());
+        GPoint ne(me.getX() + 1, me.getY() + 1);
+        
+        chosen.add("E");
+        travelHelper(target, e, chosen);
+        chosen.remove(chosen.size() - 1);
+        
+        // rinse and repeat for n and ne
+    }
+}
+void travel(const GPoint& target) {
+    GPoint origin(0, 0);
+    travelHelper(target, origin, steps);
+}
+~~~~
