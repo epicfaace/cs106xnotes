@@ -1,0 +1,127 @@
+10/23/2017
+
+***Linked List*** -- each node stores one element and a link to other nodes.
+
+# Structs
+- like a lightweight class. by default, all member variables and methods are public.
+~~~~c++
+struct Date {
+    int month;
+    int day;
+}
+Date today;
+today.month = 10;
+today.day = 23;
+/*or*/ Date xmas {12, 25};
+~~~~
+
+# Memory address
+```&``` (address-of) operator provides a value's memory address -- as a hexadecimal numbers.
+
+~~~~c++
+int x = 42;
+x;  // 42
+&x; // 0x7f8e20
+~~~~
+
+## Pointer:
+- variable that stores a memory address.
+~~~~c++
+int x = 42;
+int* p = &x;
+~~~~
+### Dereferencing a pointer
+**```*``` operator** - dereference operator. follows a pointer to its pointee.
+~~~~c++
+int x = 42; int* p = &x;
+p; // 0x7f8e20
+*p; // 42
+*p = 99;
+x; // 99!.
+~~~~
+
+### Null pointer
+**nullptr** - memory address 0; points to "nothing". If you dereference a null pointer, the program will crash! (segmentation fault)
+~~~~c++
+int *p = nullptr;
+p; // 0
+*p; // KABOOM
+!p; // true
+~~~~
+
+### Garbage pointer (unitialized)
+~~~~c++
+int* p;
+p; // 0x???????
+*p; // KABOOM
+~~~~
+
+### pointer to a struct
+a->b syntax means, (*a).b
+~~~~c++
+Date d {7, 2};
+Date* p = &d;
+(*p).month; // 7 
+p->month; // 7
+p->toString(); // "7/13"
+~~~~
+
+## The call stack
+~~~~c++
+int main() {
+int b = 17;
+f();
+}
+void f() {
+int c = 2;
+g();
+}
+void g() {
+int d = 0;
+}
+~~~~
+## The heap
+- the **new** keyword allocates memory on a heap (and returns a pointer to it).
+- Memory is ***kept until explicitly freed up*** by the programmer.
+~~~~c++
+int main() {
+int* a = new int(42);
+int b = 17;
+f();
+}
+void f() {
+int* c = new int(99);
+g();
+}
+void g() {
+int d = 0;
+}
+// Heap will have 99 and 42
+// Stack will just have pointers (i.e. 0x7f24 and 0x7f20)
+// heap memory left as is, when functions are over.
+~~~~
+
+## They keyword ```new```
+- more useful for objects, not ints.
+~~~~c++
+Date* d = new Date();
+d->month = 7;
+d-?month // 7.
+// the date object can live longer than the function itself.
+~~~~
+
+## Back to the linked list -- node structure
+~~~~c++
+struct ListNode {
+    int data;
+    ListNode* next;
+};
+ListNode* node1 = new ListNode();
+node1->data = 42;
+ListNode* node2 = new ListNode();
+node2->data = -3;
+node1->next = node2; // no ampersand needed. because new returns a memory reference.
+node1->next->next = new ListNode(12);
+
+node1 = node1 -> next; // deletes front node.
+~~~~
