@@ -1,0 +1,36 @@
+
+
+~~~~c++
+type* name = new type(params);
+~~~~
+
+## Looping through linked list & printing it.
+~~~~c++
+ListNode* node1 = new ListNode(42);
+node1->next = new ListNode(-3);
+node1->next->next = new ListNode(17);
+while (node1 != nullptr) {
+    cout << node1->data << " " << endl;
+    node1 = node1->next;
+}
+~~~~
+DON'T do that -- it modifies the list pointer itself, so you can't loop throught the list more than once. **Instead,** make another pointer and change that.
+~~~~c++
+ListNode* current = node1;
+while (current != nullptr) {
+    cout << current->data << " " << endl;
+    current = current->next;
+}
+~~~~
+## Loop until the end -- change ```while``` condition.
+~~~~c++
+current = node1;
+if (node1 == nullptr) {
+     // list is empty.
+}
+else {
+    while (current->next != nullptr) {
+        current = current->next;
+    }
+}
+~~~~
