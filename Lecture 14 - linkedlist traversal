@@ -1,4 +1,4 @@
-
+14 and 15 (Fri. 10/27/17)
 
 ~~~~c++
 type* name = new type(params);
@@ -31,6 +31,75 @@ if (node1 == nullptr) {
 else {
     while (current->next != nullptr) {
         current = current->next;
+    }
+}
+~~~~
+## Size of a linked list
+- traverse through a list, increment count variable.
+## Get - Returns value in list at given index.
+~~~~c++
+int get (ListNode* front, int index) {
+    ListNode* curr = front;
+    for (int i  =0; i < index; i++) {
+        curr = curr-> next;
+    }
+    return curr->data;
+}
+~~~~
+## Add - add a value to the end of the list.
+- **James Bond analogy** -- to modify a linked list, you must be positioned one node _before_ the node of interest.
+~~~~c++
+voidadd(ListNode*& front, int value) {
+    ListNode* newN = new ListNode(value);
+    if (front == nullptr) {
+        
+    }
+    else {
+        ListNode* current = front;
+        while (current->next != nullptr) {
+            current = current->next;
+    }
+}
+~~~~
+## Add first -- add at front of list.
+~~~~c++
+void addFirst(ListNode*& front, int value) {
+    ListNode* newNode = new listNode(value);
+    newNode->next = front;
+    front = newNode;
+    
+    // OR:
+    front = new ListNode(value, front);
+}
+~~~~
+## Remove first (```delete``` to free up memory)
+~~~~c++
+void removeFirst(ListNode*& front) {
+    if (front != nullptr && front->next != nullptr) {
+        ListNode* trash = front;
+        front = front->next;  
+        delete trash;
+        // delete is used only on pointers -- deletes what the pointer points at.
+        // no need to delete the pointer, because the pointer is in the stack & cleaned up automatically.
+        // delete is only meant to free up heap-allocated memory.
+    }
+}
+~~~~
+## Remove a general index from the list:
+~~~~
+void remove(ListNode*& front, int index) {
+     if (front == nullptr) {
+            
+    }
+    else {
+        ListNode* current = front;
+        for (int i = 0; i < index - 1; i++) {
+            current = current->next;        
+        } // walk to one before the node to delete.
+        ListNode* trash = current->next;
+        current->next =current->next->next;
+        delete trash;
+        // doesn't work for front of the list! (index - 1 = -1).
     }
 }
 ~~~~
