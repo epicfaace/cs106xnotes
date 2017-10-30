@@ -1,0 +1,39 @@
+10/30/2017
+
+# .h file
+~~~~c++
+#ifndef myClass.h // protection in case multiple .cpp files include this class.
+#define myClass.h
+class BankAccount {
+    public:
+        BankAccount(string name, int money); // constructor
+        // member functions:
+        void deposit(double amount);
+        string name;
+        int balance;
+    private:
+        int somethingElse;
+}; // NEED THIS!!!
+
+#endif
+~~~~
+# the cpp class
+~~~~c++
+#include "bankaccount.h"
+
+void BankAccount::deposit(double amount) {
+    this->balance += amount;
+}
+// "this" is a pointer with type BankAccount*
+~~~~
+# constructors
+~~~~c
+BankAccount ba1("Marty", 100);
+ba1.balance += 50;
+~~~~
+# constant
+~~~~c++
+class BankAccount {
+    double getBalance() const; // will not change the state of the bankaccount object.
+}
+~~~~
