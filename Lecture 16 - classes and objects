@@ -1,4 +1,4 @@
-10/30/2017
+10/30/2017 and 11/1/2017 (Lecture 17)
 
 # .h file
 ~~~~c++
@@ -31,9 +31,49 @@ void BankAccount::deposit(double amount) {
 BankAccount ba1("Marty", 100);
 ba1.balance += 50;
 ~~~~
-# constant
+# constant - obj does not change.
 ~~~~c++
 class BankAccount {
     double getBalance() const; // will not change the state of the bankaccount object.
 }
 ~~~~
+# Operator overloading
+in .h file
+~~~~
+bool operator ==(const BankAccount& ba1, const BankAccount& ba2);
+~~~~
+in .cpp file (implement it).
+## friend
+- but operators are not part of the class! normally can't access private data. 
+- bank account class can specify which methods can access private variables (i.e. friends)
+~~~~
+class BankAccount { ...
+public: // or private:
+    friend bool operator ==(const BankAccount& ba1, const BankAccount& ba2);
+}
+~~~~
+## overloading << operator - makes it printable.
+~~~~
+ostream& operator <<(ostream& out, const BankAccount& ba) {
+    out << ba.id;
+    return out;
+}
+# object destructors
+outside bankaccount class declaration (in .cpp file)
+~~~~
+// in .h in class declaration
+public:
+    ~BankAccount(); ///
+
+// in .cpp
+BankAccount::~BankAccount() {
+    delete _pointerthing;
+}
+~~~~
+
+- implement a LinkedIntList using a list?
+- 
+# doubly linked list
+- next pointer & previous pointer: keep a back pointer and a front pointer.
+# skip list!
+- O (log N) runtime avg to add, remove, search. only works with sorted lists.
