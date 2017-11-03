@@ -1,0 +1,44 @@
+Fri. 11/3/2017
+
+# Arrays
+Statically allocated (stack-allocated array):
+```type name[length];```
+```int homeworkGrades[7];``` homeworkGrades is like a pointer.
+
+Dynamically allocated (heap-allocated array):
+```type* name = new type[length];```
+```int* homeworkGrades = new int[7];``` now homeworkGrades _is_ a pointer. You must manually release memory, or else memory leak (>_<)
+
+## initializing memory
+```type* name = new type[length];``` uninitialized (random values)
+```type* name = new type[length]();``` initialize to 0
+```int a[4] {};``` initialize to 0
+```int* a = new int[4] {1, 2, 3, 4};```
+```int* a = new int[3];```
+```int*a = new int[3]();```
+
+# How vector / stack works
+- use an unfilled array. use a private variable ```int* elements``` for the array.
+- implement ArrayStack
+## Deleting an array:
+~~~~c++
+// constructor
+int capacity = 10;
+elements = new int[capacity];
+// destructor
+delete[] elements;
+// push, pop, etc.
+~~~~
+# Shallow copy bug
+- If you say ```ArrayStack s2 = s1;``` then both end up sharing the same array! - copy constructor ```ArrayStack(const ArrayStack& stack);```
+- assignment operator (overload =) ```ArrayStack& operator =(const ArrayStack& stack);```
+Rule of three: In C++, when you define one of these three items in
+your class, you probably should define all three:
+1) copy constructor 2) assignment operator 3) destructor
+- OR: forbid copying.
+~~~~
+// ArrayStack.h
+private:
+    ArrayStack(const ArrayStack& stack);
+    ArrayStack& operator =(const ArrayList& stack);
+~~~~
