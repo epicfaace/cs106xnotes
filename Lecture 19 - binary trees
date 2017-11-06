@@ -1,0 +1,66 @@
+
+
+**Binary trees** -- linked list, acyclic, each node has at most two children
+Tree node object:
+~~~~
+struct TreeNode {
+    int data;
+    TreeNode* left;
+    TreeNode* right;
+}
+~~~~
+## Printing:
+pre-order: root, then left/right
+in-order: left, root, right
+post-order: left/right, then root
+- Trick: trace a path CCW around the tree...
+~~~c++
+void print(TreeNode* node) {
+    print(node->left);
+    print(node);
+    print(node->right);
+}
+~~~
+
+Exercise: size: returns # of elements below node.
+~~~~c++
+int size(TreeNode* node) {
+    if (node == nullptr) {
+        return 0;
+    }
+    return size(node->left) + size(node_>right) + 1;
+}
+~~~~
+## contains
+~~~~c++
+bool contains(TreeNode* node, int value) {
+    if (node == nullptr) return false;
+    if (node->data==value) {
+        return true;
+    }
+    return (contains(node->left,value) || contains(node->right,value));
+}
+~~~~
+## print sideways
+~~~~c++
+void printSideways(TreeNode* node) {
+    printSidewaysHelper(node, 0);
+}
+void printSidewaysHelper(TreeNode* node, int level) {
+   // if (node == nullptr) do nothing
+   if (node != nullptr) {
+    printSidewaysHelper(node->right, level + 1);
+    
+    for (int i = 0; i < level; i++) {
+        cout << "    ";
+    }
+    cout << node->data;
+    
+    printSidewaysHelper(node->left, level + 1);
+
+   }
+}
+~~~~
+
+## Big O of a tree traversal
+If K nodes, traversal is ```O(k)```. Height is ```log k```.
