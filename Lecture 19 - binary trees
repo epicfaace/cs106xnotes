@@ -64,3 +64,37 @@ void printSidewaysHelper(TreeNode* node, int level) {
 
 ## Big O of a tree traversal
 If K nodes, traversal is ```O(k)```. Height is ```log k```.
+
+Lecture 20 (Wed.) - binary search trees.
+Lecture 21 (Fri.)
+# Tree Sets
+- uses a binary search tree; this is how the stanford ```Set``` class is implemented.
+- private variables: ```TreeNode* root;```
+- implement tree maps: each tree map node has a key and a value operator.
+- for both sets and maps, the < operator must be defined!
+
+#Balanced trees; advanced; trees
+trees and balance -- balanced tree branches' length are off by at most 1
+red-black tree: not strictly balanced
+AVL tree - uses modified add/remove operations to stay balanced as its elements change.
+Tree rotations.
+SO: red-black tree: faster to add/remove (balances less often). AVL tree: faster to search.
+**Splay tree:** tree is rotated to make accessed elem to top -- remains moderately balanced.
+
+# Trie (prefix tree)
+- 26 children for each node, with each letter.
+- used to implement ```Lexicon```
+
+# Priority Queue
+- #include "pqueue.h"
+- using a binary search tree (BST) priority queue: always dequeue from the left (highest priority). so tree will constantly be unbalanced!
+# Heap
+- heap: highest priority always at top (adding new at bottom right -- bubble up to proper place).
+- Always dequeue from the top. Replace this top node with the bottom right node; then bubble down towards the smaller of the children.
+- How do you know what bottom right is? Store the nodes as an **array**. Index 0 = 0. Index 1 = root. 2, 3 = children of root. 4, 5 = children of index 2. 6, 7 = children of index 3. Then: last one is index size.
+- Given a node at *i*, its parent will be at *i/2*. For each node, its children will be at *2i* and *2i+1*.
+
+# Huffman encoding:
+- represent more common characters with less bits; and less common characters with more bits.
+- "Huffman Tree" -- shows us a good binary repr for each character, like a trie. each character is an endpoint in the tree.
+- implement with a priority queue. (start with two rarest characters).
