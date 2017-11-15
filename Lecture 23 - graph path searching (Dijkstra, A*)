@@ -1,0 +1,4 @@
+DFS, BFS do not consider weight. What if you don't want just the shortest path, but the path with the smallest cost???
+
+# DIjkstra's algorithm
+Find the minimum-weight path by using a BFS with a priority queue, sorted by weight.
