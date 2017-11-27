@@ -1,0 +1,7 @@
+11/27/17
+```
+class Lawyer: public Employee {
+
+}
+```
+Overriding: you have to use the ```virtual``` keyword in both superclass and subclass.
