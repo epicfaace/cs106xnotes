@@ -5,3 +5,23 @@ class Lawyer: public Employee {
 }
 ```
 Overriding: you have to use the ```virtual``` keyword in both superclass and subclass.
+Call superclass constructor:
+```
+Lawyer::Lawyer(string name, string school) : Employee(string name)
+```
+## Abstract function / interface
+```
+class Employee {
+    virtual void work() = 0;
+}
+```
+## Multiple inheritance
+```
+class Name: public sc1, public sc2 {...}
+```
+
+
+# Hashing
+- collision: two values have same index.
+- probing: looking around to resolve a collisoin; linear probind or quadratic probing.
+- separate chaining: solving collisions by storing a list at each index. nice -- impossible to run out of indices, unlike with probing.
